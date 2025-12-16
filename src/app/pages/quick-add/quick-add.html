@@ -1,0 +1,59 @@
+<div class="page">
+  <header class="topbar">
+    <h1>Lançar</h1>
+    <div class="type-toggle" role="tablist" aria-label="Tipo">
+      <button class="pill" [class.active]="type==='ENTRADA'" (click)="setType('ENTRADA')">Entrada</button>
+      <button class="pill" [class.active]="type==='SAIDA'" (click)="setType('SAIDA')">Saída</button>
+    </div>
+  </header>
+
+  <section class="card">
+    <label class="label">Valor</label>
+    <input
+      class="input big"
+      inputmode="decimal"
+      placeholder="0,00"
+      [(ngModel)]="amountText"
+    />
+
+    <div class="row">
+      <div class="col">
+        <label class="label">Data</label>
+        <input class="input" type="date" [(ngModel)]="dateInput" />
+      </div>
+    </div>
+
+    <label class="label">Observação (opcional)</label>
+    <input class="input" placeholder="Ex: feira, remédio..." [(ngModel)]="note" />
+  </section>
+
+  <section class="card">
+    <div class="card-title">
+      <h2>Categorias</h2>
+      <span class="hint">toque para escolher</span>
+    </div>
+
+    <div class="chips">
+      <button
+        *ngFor="let c of categories"
+        class="chip"
+        [class.selected]="selectedCategoryId===c.id"
+        [class.disabled]="!isCategoryAllowed(c)"
+        [disabled]="!isCategoryAllowed(c)"
+        (click)="pickCategory(c.id)"
+      >
+        <span class="dot" [style.background]="c.color"></span>
+        <span class="txt">{{ c.name }}</span>
+      </button>
+    </div>
+  </section>
+
+  <div class="bottom-actions">
+    <button class="btn primary" (click)="save()" [disabled]="saving">Salvar</button>
+  </div>
+
+  <div class="toast" *ngIf="toast.show">
+    <span>{{ toast.text }}</span>
+    <button *ngIf="lastCreatedId" class="link" (click)="undo()">Desfazer</button>
+  </div>
+</div>

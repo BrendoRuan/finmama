@@ -1,0 +1,73 @@
+<div class="page">
+  <header class="topbar">
+    <h1>Resumo</h1>
+    <div class="month-nav">
+      <button class="icon-btn" (click)="prevMonth()">←</button>
+      <span class="month-title">{{ title() }}</span>
+      <button class="icon-btn" (click)="nextMonth()">→</button>
+    </div>
+  </header>
+
+  <section class="grid">
+    <div class="metric">
+      <div class="k">Entradas</div>
+      <div class="v">{{ formatBRL(entradas) }}</div>
+    </div>
+    <div class="metric">
+      <div class="k">Saídas</div>
+      <div class="v">{{ formatBRL(saidas) }}</div>
+    </div>
+    <div class="metric strong">
+      <div class="k">Saldo</div>
+      <div class="v">{{ formatBRL(saldo) }}</div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">
+      <h2>Gastos por categoria</h2>
+      <span class="hint">mês selecionado</span>
+    </div>
+
+    <div *ngIf="spends.length === 0" class="empty">
+      Nenhuma saída neste mês.
+    </div>
+
+    <div class="spend-row" *ngFor="let s of spends">
+      <div class="left">
+        <span class="dot" [style.background]="s.color"></span>
+        <div class="name">{{ s.categoryName }}</div>
+      </div>
+      <div class="right">
+        <div class="amt">{{ formatBRL(s.total) }}</div>
+        <div class="bar">
+          <div class="fill" [style.width]="barWidth(s.percent)" [style.background]="s.color"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="card-title">
+      <h2>Últimos lançamentos</h2>
+      <span class="hint">mais recentes</span>
+    </div>
+
+    <div *ngIf="latest.length === 0" class="empty">
+      Sem lançamentos ainda.
+    </div>
+
+    <div class="tx" *ngFor="let item of latest">
+      <div class="tx-left">
+        <span class="dot" [style.background]="item.category?.color || '#64748b'"></span>
+        <div>
+          <div class="tx-title">{{ item.category?.name || 'Categoria' }}</div>
+          <div class="tx-sub">{{ item.tx.type }} • {{ item.tx.date | date:'dd/MM' }}</div>
+        </div>
+      </div>
+      <div class="tx-amt" [class.out]="item.tx.type==='SAIDA'">
+        {{ formatBRL(item.tx.amount) }}
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,70 @@
+<div class="page">
+  <header class="topbar">
+    <h1>Categorias</h1>
+  </header>
+
+  <section class="card">
+    <div class="card-title">
+      <h2>Nova categoria</h2>
+      <span class="hint">cores fortes</span>
+    </div>
+
+    <label class="label">Nome</label>
+    <input class="input" placeholder="Ex: Feira, Remédio..." [(ngModel)]="name" />
+
+    <div class="row">
+      <div class="col">
+        <label class="label">Tipo</label>
+        <select class="input" [(ngModel)]="type">
+          <option value="SAIDA">Saída</option>
+          <option value="ENTRADA">Entrada</option>
+          <option value="AMBOS">Ambos</option>
+        </select>
+      </div>
+
+      <div class="col">
+        <label class="label">Favorita</label>
+        <select class="input" [(ngModel)]="favorite">
+          <option [ngValue]="true">Sim</option>
+          <option [ngValue]="false">Não</option>
+        </select>
+      </div>
+    </div>
+
+    <label class="label">Cor</label>
+    <div class="palette">
+      <button
+        class="swatch"
+        *ngFor="let p of palette"
+        [style.background]="p"
+        [class.selected]="p===color"
+        (click)="pickColor(p)"
+        aria-label="Escolher cor"
+      ></button>
+    </div>
+
+    <button class="btn primary" (click)="add()">Adicionar</button>
+  </section>
+
+  <section class="card">
+    <div class="card-title">
+      <h2>Minhas categorias</h2>
+      <span class="hint">toque pra ações</span>
+    </div>
+
+    <div class="cat" *ngFor="let c of categories">
+      <div class="left">
+        <span class="dot" [style.background]="c.color"></span>
+        <div>
+          <div class="name">{{ c.name }}</div>
+          <div class="sub">{{ c.type }} • {{ c.active ? 'ativa' : 'inativa' }}</div>
+        </div>
+      </div>
+
+      <div class="right">
+        <button class="mini" (click)="toggleFavorite(c)">{{ c.favorite ? '★' : '☆' }}</button>
+        <button class="mini" (click)="toggleActive(c)">{{ c.active ? 'Desativar' : 'Ativar' }}</button>
+      </div>
+    </div>
+  </section>
+</div>

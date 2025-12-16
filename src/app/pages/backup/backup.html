@@ -1,0 +1,26 @@
+<div class="page">
+  <header class="topbar">
+    <h1>Backup</h1>
+  </header>
+
+  <section class="card">
+    <h2>Exportar</h2>
+    <p class="p">
+      Salve um arquivo .json para não perder seus dados (recomendado no iPhone).
+    </p>
+    <button class="btn primary" (click)="export()">Exportar backup (.json)</button>
+  </section>
+
+  <section class="card">
+    <h2>Restaurar</h2>
+    <p class="p">
+      Importa um backup e substitui os dados atuais.
+    </p>
+    <label class="file">
+      <input type="file" accept="application/json" (change)="onFile($event)" />
+      <span>Escolher arquivo</span>
+    </label>
+  </section>
+
+  <div class="status" *ngIf="status">{{ status }}</div>
+</div>

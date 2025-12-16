@@ -1,0 +1,55 @@
+<div class="page">
+  <header class="topbar">
+    <h1>Histórico</h1>
+    <div class="month-nav">
+      <button class="icon-btn" (click)="prevMonth()">←</button>
+      <span class="month-title">{{ title() }}</span>
+      <button class="icon-btn" (click)="nextMonth()">→</button>
+    </div>
+  </header>
+
+  <section class="filters card">
+    <div class="row">
+      <label class="label">Tipo</label>
+      <select class="input" [(ngModel)]="filterType" (change)="rebuild()">
+        <option value="TODOS">Todos</option>
+        <option value="ENTRADA">Entrada</option>
+        <option value="SAIDA">Saída</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <label class="label">Categoria</label>
+      <select class="input" [(ngModel)]="filterCategoryId" (change)="rebuild()">
+        <option value="TODAS">Todas</option>
+        <option *ngFor="let c of categories" [value]="c.id">{{ c.name }}</option>
+      </select>
+    </div>
+  </section>
+
+  <section class="card" *ngIf="grouped.length===0">
+    <div class="empty">Nenhum lançamento neste mês com os filtros atuais.</div>
+  </section>
+
+  <section class="day" *ngFor="let g of grouped">
+    <div class="day-title">{{ g.dayLabel }}</div>
+
+    <div class="card">
+      <div class="tx" *ngFor="let item of g.items">
+        <div class="tx-left">
+          <span class="dot" [style.background]="item.category?.color || '#64748b'"></span>
+          <div>
+            <div class="tx-title">{{ item.category?.name || 'Categoria' }}</div>
+            <div class="tx-sub">{{ item.tx.type }} • {{ item.tx.date | date:'HH:mm' }}</div>
+            <div class="tx-note" *ngIf="item.tx.note">{{ item.tx.note }}</div>
+          </div>
+        </div>
+
+        <div class="tx-right">
+          <div class="tx-amt" [class.out]="item.tx.type==='SAIDA'">{{ formatBRL(item.tx.amount) }}</div>
+          <button class="trash" (click)="remove(item.tx.id)">🗑️</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>

@@ -1,0 +1,30 @@
+.page { padding: 16px 16px 92px; }
+.topbar { display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom:12px; }
+.topbar h1 { font-size: 20px; margin: 0; }
+
+.card { background:#fff; border:1px solid #e5e7eb; border-radius: 16px; padding: 14px; margin-bottom: 12px; box-shadow: 0 6px 18px rgba(0,0,0,.04); }
+.card-title { display:flex; align-items:baseline; justify-content:space-between; gap:12px; margin-bottom: 10px; }
+.card-title h2 { margin:0; font-size: 16px; }
+.hint { color:#64748b; font-size: 12px; }
+
+.label { font-size: 12px; color:#475569; display:block; margin: 10px 0 6px; }
+.input { width:100%; border:1px solid #e5e7eb; border-radius: 12px; padding: 12px; font-size: 16px; outline: none; background: #fff; }
+.input:focus { border-color:#111827; }
+.row { display:flex; gap:12px; margin-top: 8px; }
+.col { flex: 1; }
+
+.palette { display:flex; flex-wrap:wrap; gap:10px; margin-bottom: 12px; }
+.swatch { width: 32px; height: 32px; border-radius: 999px; border: 2px solid transparent; }
+.swatch.selected { border-color:#111827; }
+
+.btn { width:100%; border:0; border-radius: 14px; padding: 12px; font-size: 16px; font-weight: 800; }
+.btn.primary { background:#111827; color:#fff; }
+
+.cat { display:flex; align-items:center; justify-content:space-between; gap: 12px; padding: 12px 0; border-top: 1px solid #f1f5f9; }
+.cat:first-of-type { border-top: 0; }
+.left { display:flex; align-items:center; gap: 10px; }
+.dot { width: 12px; height: 12px; border-radius: 999px; }
+.name { font-weight: 900; }
+.sub { font-size: 12px; color:#64748b; text-transform: lowercase; }
+.right { display:flex; gap: 8px; }
+.mini { border:0; background:#f1f5f9; border-radius: 12px; padding: 10px 12px; font-weight: 800; }
