@@ -1,0 +1,26 @@
+<div class="updates-page">
+
+  <header class="updates-header">
+    <h1>Atualizações</h1>
+    <p>Acompanhe as novidades e melhorias do sistema</p>
+  </header>
+
+<section class="updates-wrapper">
+  <div class="updates-box">
+
+    <article class="update-card" *ngFor="let update of updates">
+      <div class="card-header">
+        <h2>{{ update.title }}</h2>
+        <span class="date">{{ update.date }}</span>
+      </div>
+
+      <p class="card-content">
+        {{ update.description }}
+      </p>
+    </article>
+
+  </div>
+</section>
+
+
+</div>

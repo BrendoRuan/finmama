@@ -7,28 +7,42 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   imports: [RouterOutlet, CommonModule, RouterModule],
   template:  `
     <div class="app-shell">
+
       <router-outlet />
-      <nav class="bottom-nav" aria-label="Navegação">
-        <a class="nav-item" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-          <span class="nav-ico">＋</span>
-          <span class="nav-txt">Lançar</span>
+
+      <!-- MENU SECUNDÁRIO -->
+      <div class="more-menu" *ngIf="isMoreOpen">
+        <a routerLink="/categorias" (click)="closeMore()">Categorias</a>
+        <a routerLink="/backup" (click)="closeMore()">Backup</a>
+        <a routerLink="/updates" (click)="closeMore()">Atualizações</a>
+      </div>
+
+      <!-- BOTTOM NAV -->
+      <nav class="bottom-nav" aria-label="Navegação principal">
+        <a
+          class="nav-item"
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+        >
+          <span class="nav-ico">✚</span>
+          <span class="nav-txt">Registro</span>
         </a>
+
         <a class="nav-item" routerLink="/dashboard" routerLinkActive="active">
-          <span class="nav-ico">📊</span>
-          <span class="nav-txt">Resumo</span>
+          <span class="nav-ico">📈</span>
+          <span class="nav-txt">Dashboard</span>
         </a>
+
         <a class="nav-item" routerLink="/historico" routerLinkActive="active">
-          <span class="nav-ico">🧾</span>
+          <span class="nav-ico">📄</span>
           <span class="nav-txt">Histórico</span>
         </a>
-        <a class="nav-item" routerLink="/categorias" routerLinkActive="active">
-          <span class="nav-ico">🏷️</span>
-          <span class="nav-txt">Categorias</span>
-        </a>
-        <a class="nav-item" routerLink="/backup" routerLinkActive="active">
-          <span class="nav-ico">💾</span>
-          <span class="nav-txt">Backup</span>
-        </a>
+
+        <button class="nav-item" (click)="toggleMore()">
+          <span class="nav-ico">☰</span>
+          <span class="nav-txt">Mais</span>
+        </button>
       </nav>
     </div>
   `,
@@ -36,4 +50,13 @@ import { RouterModule, RouterOutlet } from '@angular/router';
 })
 export class App {
   protected title = 'fin-mama';
+    isMoreOpen = false;
+
+  toggleMore() {
+    this.isMoreOpen = !this.isMoreOpen;
+  }
+
+  closeMore() {
+    this.isMoreOpen = false;
+  }
 }

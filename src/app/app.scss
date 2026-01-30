@@ -13,33 +13,123 @@ body {
   color: #0f172a;
 }
 
+/* ===== CONTAINER ===== */
 .app-shell {
   min-height: 100vh;
-  padding-bottom: 62px; // espaço da nav
+  padding-bottom: 70px; // espaço do menu
+  background: #f6f7f9;
 }
 
+/* ===== MENU INFERIOR ===== */
 .bottom-nav {
   position: fixed;
-  left: 0; right: 0; bottom: 0;
-  height: 62px;
-  background: rgba(255,255,255,.95);
+  bottom: 0;
+  left: 0;
+  right: 0;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  height: 64px;
+  background: #ffffff;
   border-top: 1px solid #e5e7eb;
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  backdrop-filter: blur(10px);
+  box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.03);
 }
 
+/* ===== BOTÕES DO MENU ===== */
 .nav-item {
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  gap: 3px;
-  text-decoration:none;
-  color:#475569;
-  font-weight:700;
+  all: unset;
+  cursor: pointer;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  min-width: 64px;
+  padding: 6px 10px;
+  border-radius: 10px;
+
+  color: #4b5563;
+  font-size: 12px;
+
+  transition: background-color 0.2s ease,
+              color 0.2s ease,
+              transform 0.15s ease;
+}
+
+/* ÍCONE */
+.nav-ico {
+  font-size: 18px;
+  line-height: 1;
+  margin-bottom: 2px;
+}
+
+/* TEXTO */
+.nav-txt {
   font-size: 11px;
 }
 
-.nav-item .nav-ico { font-size: 18px; line-height: 1; }
-.nav-item.active { color:#111827; }
+/* HOVER (cinza suave) */
+.nav-item:hover {
+  background-color: #f1f3f5;
+  color: #111827;
+}
+
+/* CLICK FEEDBACK */
+.nav-item:active {
+  transform: scale(0.95);
+}
+
+/* ATIVO */
+.nav-item.active {
+  background-color: #e5e7eb;
+  color: #111827;
+  font-weight: 600;
+}
+
+/* ===== BOTÃO MAIS (☰) ===== */
+.menu-btn {
+  border: none;
+  background: transparent;
+}
+
+/* ===== MENU EXPANDIDO ===== */
+.more-menu {
+  position: fixed;
+  bottom: 74px;
+  right: 12px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 8px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+}
+
+/* ITENS DO MENU MAIS */
+.more-menu a {
+  text-decoration: none;
+  color: #374151;
+
+  padding: 10px 14px;
+  border-radius: 8px;
+
+  font-size: 14px;
+  white-space: nowrap;
+
+  transition: background-color 0.2s ease,
+              color 0.2s ease;
+}
+
+/* HOVER SUAVE */
+.more-menu a:hover {
+  background-color: #f1f3f5;
+  color: #111827;
+}

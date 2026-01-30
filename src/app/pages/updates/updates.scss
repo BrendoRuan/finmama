@@ -1,0 +1,90 @@
+/* ===== Página ===== */
+.updates-page {
+  min-height: 100vh;
+  padding: 1.5rem 1rem 5rem;
+  background: #f5f6fa;
+}
+
+/* ===== Cabeçalho ===== */
+.updates-header {
+  text-align: center;
+  margin-bottom: 2rem;
+
+  h1 {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: #4b2cb3; /* destaque forte */
+    margin-bottom: 0.3rem;
+  }
+
+  p {
+    font-size: 0.95rem;
+    color: #6c7078;
+  }
+}
+
+/* ===== Área central ===== */
+.updates-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* ===== Caixa das atualizações ===== */
+.updates-box {
+  width: 100%;
+  max-width: 720px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 1.3rem;
+
+  border: 1px solid #e2e4ea;
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.06);
+
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* ===== Card ===== */
+.update-card {
+  background: #f8f9fc;
+  border-radius: 16px;
+  padding: 1.1rem 1.2rem;
+
+  border: 1px solid #e3e5ea;
+  transition: all 0.2s ease;
+}
+
+.update-card:hover {
+  background: #f3f4f8;
+  transform: translateY(-2px);
+}
+
+/* ===== Cabeçalho do card ===== */
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+
+  h2 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: #1f2933;
+    margin: 0;
+  }
+
+  .date {
+    font-size: 0.75rem;
+    color: #8b9099;
+    white-space: nowrap;
+  }
+}
+
+/* ===== Conteúdo ===== */
+.card-content {
+  margin-top: 0.7rem;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: #3a3f45;
+}
