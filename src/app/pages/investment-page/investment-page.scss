@@ -1,0 +1,147 @@
+:host {
+  display: block;
+  background: #f3f4f6;
+  min-height: 100vh;
+  padding: 24px;
+  font-family: 'Segoe UI', sans-serif;
+  color: #111827;
+}
+
+.investment-container {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+/* CARD PADRÃO */
+.card {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 20px;
+  border: 1px solid #e5e7eb;
+}
+
+/* TOTAL */
+.total-card {
+  h1 {
+    margin: 6px 0 0;
+    font-size: 28px;
+    font-weight: 600;
+  }
+
+  .label {
+    font-size: 14px;
+    color: #6b7280;
+  }
+}
+
+/* BOTÕES ENTRADA / SAÍDA */
+.type-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+
+  button {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    background: #ffffff;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.2s;
+
+    &.active {
+      background: #111827;
+      color: white;
+      border-color: #111827;
+    }
+
+    &:hover {
+      background: #f9fafb;
+    }
+  }
+}
+
+/* FORM */
+.form-card {
+  display: flex;
+  gap: 12px;
+
+  input {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1px solid #d1d5db;
+    font-size: 15px;
+  }
+
+  button {
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    background: #111827;
+    color: white;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s;
+
+    &:hover {
+      opacity: 0.9;
+    }
+
+    &:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+  }
+}
+
+/* HISTÓRICO */
+.history {
+  margin-top: 30px;
+
+  h3 {
+    font-size: 16px;
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+}
+
+.history-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #e5e7eb;
+}
+
+.history-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.history-type {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.history-date {
+  font-size: 12px;
+  color: #6b7280;
+}
+
+.green {
+  color: #16a34a;
+  font-weight: 600;
+}
+
+.red {
+  color: #dc2626;
+  font-weight: 600;
+}
+
+.empty {
+  font-size: 14px;
+  color: #6b7280;
+}

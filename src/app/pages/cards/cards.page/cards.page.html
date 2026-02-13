@@ -1,0 +1,62 @@
+<div class="cards-page">
+
+  <header class="page-header">
+    <h1>Cartões</h1>
+  </header>
+
+  <main class="cards-list">
+
+    <div
+      class="card-item"
+      *ngFor="let card of cards"
+      [class.selected]="isSelected(card)"
+      (click)="selectCard(card)"
+      (dblclick)="openDetails(card)"
+    >
+      <div class="card-header">
+        <span class="card-name">{{ card.name }}</span>
+      </div>
+
+      <div class="card-info">
+        <span class="limit">
+          R$ {{ getAvailableLimit(card) | number:'1.2-2' }} disponível
+        </span>
+
+        <div class="limit-bar">
+          <div
+            class="limit-bar-used"
+            [style.width.%]="calculator.calculateUsagePercent(card, getUsedLimit(card))"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="empty-state" *ngIf="cards.length === 0">
+      <p>Nenhum cartão cadastrado</p>
+      <button (click)="addCard()">Adicionar cartão</button>
+    </div>
+
+  </main>
+
+  <footer class="bottom-actions">
+    <button
+      class="danger"
+      [disabled]="!selectedCardId"
+      (click)="deleteCard()"
+    >
+      🗑️
+    </button>
+
+    <button
+      [disabled]="!selectedCardId"
+      (click)="editCard()"
+    >
+      ✏️
+    </button>
+
+    <button class="primary" (click)="addCard()">
+      ➕
+    </button>
+  </footer>
+
+</div>

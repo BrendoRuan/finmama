@@ -8,4 +8,5 @@ export interface Transaction {
   categoryId: string;
   note?: string;
   createdAt: string; // ISO
+  cardId?: string; //
 }

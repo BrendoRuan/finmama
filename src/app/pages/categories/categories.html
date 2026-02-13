@@ -64,6 +64,7 @@
       <div class="right">
         <button class="mini" (click)="toggleFavorite(c)">{{ c.favorite ? '★' : '☆' }}</button>
         <button class="mini" (click)="toggleActive(c)">{{ c.active ? 'Desativar' : 'Ativar' }}</button>
+        <button class="mini danger" (click)="remove(c)">Excluir</button>
       </div>
     </div>
   </section>

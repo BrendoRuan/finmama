@@ -15,6 +15,8 @@ import { RouterModule, RouterOutlet } from '@angular/router';
         <a routerLink="/categorias" (click)="closeMore()">Categorias</a>
         <a routerLink="/backup" (click)="closeMore()">Backup</a>
         <a routerLink="/updates" (click)="closeMore()">Atualizações</a>
+        <a routerLink="/investment" (click)="closeMore()">Investimento</a>
+        <a routerLink="/cards" (click)="closeMore()">Cartões</a>
       </div>
 
       <!-- BOTTOM NAV -->

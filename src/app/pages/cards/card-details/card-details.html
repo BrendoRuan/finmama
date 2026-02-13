@@ -1,0 +1,47 @@
+<div class="card-details" *ngIf="!loading">
+
+  <!-- Cartão visual -->
+  <div class="card-visual" [style.background]="card.color">
+    <span class="brand">{{ card.brand | uppercase }}</span>
+    <h2>{{ card.name }}</h2>
+    <p class="limit">
+      Limite: {{ card.limitTotal | currency:'BRL' }}
+    </p>
+  </div>
+
+  <!-- Limite -->
+  <div class="limit-info">
+    <div class="values">
+      <span>Usado</span>
+      <strong>{{ limitUsed | currency:'BRL' }}</strong>
+    </div>
+
+    <div class="values">
+      <span>Disponível</span>
+      <strong>{{ limitAvailable | currency:'BRL' }}</strong>
+    </div>
+  </div>
+
+  <!-- Barra de limite -->
+  <div class="limit-bar">
+    <div
+      class="limit-bar-fill"
+      [style.width.%]="limitPercent"
+      [style.background]="card.color">
+    </div>
+  </div>
+
+  <!-- Faturas -->
+  <div class="bills">
+    <h3>Faturas</h3>
+
+    <div class="bill" *ngFor="let bill of bills">
+      <span>{{ bill.month }}/{{ bill.year }}</span>
+      <strong>{{ bill.totalAmount | currency:'BRL' }}</strong>
+    </div>
+
+    <p class="empty" *ngIf="bills.length === 0">
+      Nenhuma fatura encontrada
+    </p>
+  </div>
+</div>

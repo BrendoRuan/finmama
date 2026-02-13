@@ -1,0 +1,71 @@
+<div *ngIf="investment as inv" class="investment-container">
+
+  <!-- TOTAL -->
+  <div class="card total-card">
+    <p class="label">Reserva Total</p>
+    <h1>
+      {{ inv.totalAmount | currency:'BRL':'symbol':'1.2-2' }}
+    </h1>
+  </div>
+
+  <!-- TIPO -->
+  <div class="type-selector">
+    <button 
+      [class.active]="type === 'entrada'" 
+      (click)="setType('entrada')">
+      Entrada
+    </button>
+
+    <button 
+      [class.active]="type === 'saida'" 
+      (click)="setType('saida')">
+      Saída
+    </button>
+  </div>
+
+  <!-- INPUT -->
+  <div class="card form-card">
+    <input
+      type="text"
+      [(ngModel)]="amountText"
+      placeholder="Digite o valor (ex: 100,00)"
+    />
+
+    <button (click)="save()" [disabled]="saving">
+      {{ saving ? 'Salvando...' : 'Confirmar' }}
+    </button>
+  </div>
+
+  <!-- HISTÓRICO -->
+  <div class="card history">
+  <h3>Últimos lançamentos</h3>
+
+  <div
+    class="history-item"
+    *ngFor="let t of inv.transactions">
+
+    <div class="history-left">
+      <span class="history-type">
+        {{ t.type === 'entrada' ? 'Entrada' : 'Saída' }}
+      </span>
+      <span class="history-date">
+        {{ t.date | date:'dd/MM/yyyy' }}
+      </span>
+    </div>
+
+    <strong
+      [class.green]="t.type === 'entrada'"
+      [class.red]="t.type === 'saida'">
+      {{ t.amount | currency:'BRL' }}
+    </strong>
+  </div>
+
+  <p *ngIf="!inv.transactions.length" class="empty">
+    Nenhuma movimentação ainda.
+  </p>
+</div>
+
+<!-- TOAST -->
+<div class="toast" *ngIf="toast.show">
+  {{ toast.text }}
+</div>

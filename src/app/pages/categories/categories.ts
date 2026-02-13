@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Category, CategoryType } from '../../core/models/category/category-module';
 import { CategoryService } from '../../core/services/category';
-
 @Component({
   selector: 'app-categories',
   imports: [CommonModule, FormsModule],
@@ -47,6 +46,12 @@ export class Categories implements OnInit {
 
   async toggleFavorite(c: Category): Promise<void> {
     await this.categoryService.save({ ...c, favorite: !c.favorite });
+    await this.refresh();
+  }
+
+  async remove(c: Category): Promise<void> {
+    if (!confirm(`Deseja realmente excluir a categoria "${c.name}"?`)) return;
+    await this.categoryService.remove(c.id);
     await this.refresh();
   }
 

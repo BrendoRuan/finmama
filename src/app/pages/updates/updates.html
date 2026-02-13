@@ -8,16 +8,16 @@
 <section class="updates-wrapper">
   <div class="updates-box">
 
-    <article class="update-card" *ngFor="let update of updates">
-      <div class="card-header">
-        <h2>{{ update.title }}</h2>
-        <span class="date">{{ update.date }}</span>
-      </div>
+ <article class="update-card" *ngFor="let update of updates">
+  <div class="card-header">
+    <h2>{{ update.title }}</h2>
+    <span class="date">{{ update.date }}</span>
+  </div>
 
-      <p class="card-content">
-        {{ update.description }}
-      </p>
-    </article>
+  <div class="card-content" [innerHTML]="formatDescription(update.description)">
+  </div>
+</article>
+
 
   </div>
 </section>

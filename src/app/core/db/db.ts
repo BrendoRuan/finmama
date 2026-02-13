@@ -1,13 +1,19 @@
 import { Injectable } from '@angular/core';
 
-type StoreName = 'categories' | 'transactions';
+type StoreName =
+  | 'categories'
+  | 'transactions'
+  | 'cards'
+  | 'emergency_reserve'
+  | 'card_bills'
+;
 
 @Injectable({
   providedIn: 'root',
 })
 export class Db {
   private readonly dbName = 'fin_mama_db';
-  private readonly dbVersion = 1;
+  private readonly dbVersion = 2;
   private dbPromise: Promise<IDBDatabase> | null = null;
 
   private open(): Promise<IDBDatabase> {
@@ -16,24 +22,46 @@ export class Db {
     this.dbPromise = new Promise((resolve, reject) => {
       const req = indexedDB.open(this.dbName, this.dbVersion);
 
-      req.onupgradeneeded = () => {
-        const db = req.result;
+     req.onupgradeneeded = () => {
+  const db = req.result;
 
-        if (!db.objectStoreNames.contains('categories')) {
-          const store = db.createObjectStore('categories', { keyPath: 'id' });
-          store.createIndex('active', 'active', { unique: false });
-          store.createIndex('favorite', 'favorite', { unique: false });
-          store.createIndex('createdAt', 'createdAt', { unique: false });
-        }
+  if (!db.objectStoreNames.contains('categories')) {
+    const store = db.createObjectStore('categories', { keyPath: 'id' });
+    store.createIndex('active', 'active', { unique: false });
+    store.createIndex('favorite', 'favorite', { unique: false });
+    store.createIndex('createdAt', 'createdAt', { unique: false });
+  }
 
-        if (!db.objectStoreNames.contains('transactions')) {
-          const store = db.createObjectStore('transactions', { keyPath: 'id' });
-          store.createIndex('date', 'date', { unique: false });
-          store.createIndex('categoryId', 'categoryId', { unique: false });
-          store.createIndex('type', 'type', { unique: false });
-          store.createIndex('createdAt', 'createdAt', { unique: false });
-        }
-      };
+  if (!db.objectStoreNames.contains('transactions')) {
+    const store = db.createObjectStore('transactions', { keyPath: 'id' });
+    store.createIndex('date', 'date', { unique: false });
+    store.createIndex('categoryId', 'categoryId', { unique: false });
+    store.createIndex('type', 'type', { unique: false });
+    store.createIndex('createdAt', 'createdAt', { unique: false });
+  }
+
+  // 💳 Cartões
+  if (!db.objectStoreNames.contains('cards')) {
+    const store = db.createObjectStore('cards', { keyPath: 'id' });
+    store.createIndex('createdAt', 'createdAt', { unique: false });
+    store.createIndex('active', 'active', { unique: false });
+store.createIndex('bankName', 'bankName', { unique: false });
+
+  }
+
+  // 🛟 Reserva de emergência (entidade única)
+  if (!db.objectStoreNames.contains('emergency_reserve')) {
+    db.createObjectStore('emergency_reserve', { keyPath: 'id' });
+  }
+  // 🧾 Faturas de cartão de crédito
+  if (!db.objectStoreNames.contains('card_bills')) {
+  const store = db.createObjectStore('card_bills', { keyPath: 'id' });
+  store.createIndex('cardId', 'cardId', { unique: false });
+  store.createIndex('year', 'year', { unique: false });
+  store.createIndex('month', 'month', { unique: false });
+}
+
+};
 
       req.onsuccess = () => resolve(req.result);
       req.onerror = () => reject(req.error ?? new Error('Falha ao abrir IndexedDB'));

@@ -1,0 +1,52 @@
+<div class="card-form-page">
+
+  <header class="page-header">
+    <button class="back" (click)="cancel()">←</button>
+    <h1>{{ isEdit ? 'Editar Cartão' : 'Adicionar Cartão' }}</h1>
+  </header>
+
+  <form class="card-form">
+
+    <label>
+      Nome do cartão
+      <input type="text" [(ngModel)]="card.name" name="name" />
+    </label>
+
+    <label>
+      Bandeira
+      <select [(ngModel)]="card.brand" name="brand">
+        <option *ngFor="let brand of brands" [value]="brand">
+          {{ brand | uppercase }}
+        </option>
+      </select>
+    </label>
+
+    <label>
+      Limite total
+      <input type="number" [(ngModel)]="card.limitTotal" name="limit" />
+    </label>
+
+    <div class="row">
+      <label>
+        Fechamento
+        <input type="number" [(ngModel)]="card.closingDay" name="closingDay" />
+      </label>
+
+      <label>
+        Vencimento
+        <input type="number" [(ngModel)]="card.dueDay" name="dueDay" />
+      </label>
+    </div>
+
+    <label>
+      Cor do cartão
+      <input type="color" [(ngModel)]="card.color" name="color" />
+    </label>
+
+    <button class="save" type="button" (click)="save()">
+      Salvar
+    </button>
+
+  </form>
+
+</div>

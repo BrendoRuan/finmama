@@ -7,6 +7,7 @@
     </div>
   </header>
 
+  <!-- CARD PRINCIPAL -->
   <section class="card">
     <label class="label">Valor</label>
     <input
@@ -27,6 +28,7 @@
     <input class="input" placeholder="Ex: feira, remédio..." [(ngModel)]="note" />
   </section>
 
+  <!-- CATEGORIAS -->
   <section class="card">
     <div class="card-title">
       <h2>Categorias</h2>
@@ -48,12 +50,66 @@
     </div>
   </section>
 
-  <div class="bottom-actions">
-    <button class="btn primary" (click)="save()" [disabled]="saving">Salvar</button>
-  </div>
+  <!-- BOTÃO SALVAR (AGORA AQUI) -->
+  <button class="btn primary save-btn" (click)="save()" [disabled]="saving">
+    Salvar
+  </button>
 
+  <!-- INVESTIMENTO -->
+  <section class="card investment-card">
+    <div class="card-title">
+      <h2>Investimento</h2>
+      <span class="hint">Reserva de emergência (CDI)</span>
+    </div>
+
+    <label class="label">Valor para investir</label>
+    <input
+      class="input big"
+      inputmode="decimal"
+      placeholder="0,00"
+      [(ngModel)]="investmentAmountText"
+    />
+
+    <button
+      class="btn investment-btn"
+      (click)="addInvestment()"
+      [disabled]="investing">
+      Aplicar
+    </button>
+  </section>
+
+  <!-- TOAST -->
   <div class="toast" *ngIf="toast.show">
     <span>{{ toast.text }}</span>
     <button *ngIf="lastCreatedId" class="link" (click)="undo()">Desfazer</button>
   </div>
+
+ <section class="card card-bill">
+  <div class="card-title">
+    <h2>Fatura do Cartão</h2>
+    <span class="hint">Escolha o cartão e informe valor e parcelas</span>
+  </div>
+
+  <!-- SELEÇÃO DO CARTÃO -->
+  <label class="label">Cartão</label>
+  <div class="chips">
+    <button
+      *ngFor="let c of cards"
+      class="chip"
+      [class.selected]="selectedCardId === c.id"
+      (click)="pickCard(c.id)">
+      <span class="txt">{{ c.name }}</span>
+    </button>
+  </div>
+
+  <label class="label">Valor da fatura</label>
+  <input class="input big" inputmode="decimal" placeholder="0,00" [(ngModel)]="faturaAmountText" />
+
+  <label class="label">Quantidade de parcelas</label>
+  <input class="input" type="number" min="1" [(ngModel)]="faturaQuantity" />
+
+  <button class="btn primary" (click)="saveCardBill()" [disabled]="saving || !selectedCardId">Salvar Fatura</button>
+</section>
+
+
 </div>

@@ -1,0 +1,57 @@
+.card-form-page {
+  padding: 16px;
+}
+
+.page-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.page-header h1 {
+  font-size: 18px;
+}
+
+.back {
+  background: none;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.card-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+
+input,
+select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #333;
+  background: #1e1e1e;
+  color: #fff;
+}
+
+.row {
+  display: flex;
+  gap: 12px;
+}
+
+.save {
+  margin-top: 20px;
+  padding: 12px;
+  border-radius: 10px;
+  background: #7b3fe4;
+  color: #fff;
+  border: none;
+  font-size: 16px;
+}
