@@ -15,7 +15,7 @@
     <label>
       Bandeira
       <select [(ngModel)]="card.brand" name="brand">
-        <option *ngFor="let brand of brands" [value]="brand">
+        <option *ngFor="let brand of availableBrands" [value]="brand">
           {{ brand | uppercase }}
         </option>
       </select>
